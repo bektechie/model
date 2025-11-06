@@ -1,0 +1,84 @@
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f1f1f1;
+  gap: 40px;
+  padding: 20px;
+}
+
+.signup-left img {
+  width: 969px;
+  height: 860px;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.signup-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signup-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  width: 400px;
+  height: 860px; /* same as image */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signup-card h1 {
+  margin-bottom: 10px;
+}
+
+.signup-link {
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.signup-card label {
+  margin-top: 10px;
+  display: block;
+  font-weight: bold;
+}
+
+.signup-card input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.success {
+  color: green;
+  margin-bottom: 10px;
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signup-btn:hover {
+  background: #0056b3;
+}
