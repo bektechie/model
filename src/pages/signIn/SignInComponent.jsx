@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "./signInStyle.css"; // Separate CSS
+import "./signInStyle.css";
 
-const STORAGE_KEY = "fake_auth_credents";
+const STORAGE_KEY = "fake_auth_users";
 
-const getStorageCredents = () => {
+// 🔹 Load users from localStorage (initialize with default admin if empty)
+const getStorageUsers = () => {
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored) {
     try {
@@ -13,9 +14,9 @@ const getStorageCredents = () => {
       console.error("KEY ERROR");
     }
   }
-  const credents = { email: "admin@gmail.com", password: "123" };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(credents));
-  return credents;
+  const users = [{ email: "admin@gmail.com", password: "123" }];
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+  return users;
 };
 
 export default function SignInComponent() {
@@ -27,10 +28,13 @@ export default function SignInComponent() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-    const stored = getStorageCredents();
 
-    if (email.trim() === stored.email && password === stored.password) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ email, password }));
+    const users = getStorageUsers();
+    const foundUser = users.find(
+      (u) => u.email.trim() === email.trim() && u.password.trim() === password.trim()
+    );
+
+    if (foundUser) {
       localStorage.setItem("fake_auth_log_in", "true");
       navigate("/main");
     } else {
@@ -51,12 +55,13 @@ export default function SignInComponent() {
         <div className="signin-card">
           <h1>Sign In</h1>
           <p className="signup-link">
-            Don't have an account? <Link to="/">Sign Up</Link>
+            Don’t have an account? <Link to="/signup">Sign Up</Link>
           </p>
 
           <form onSubmit={handleSubmit}>
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
+              id="email"
               type="email"
               placeholder="Email"
               required
@@ -64,8 +69,9 @@ export default function SignInComponent() {
               onChange={(e) => setEmail(e.target.value)}
             />
 
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
             <input
+              id="password"
               type="password"
               placeholder="Password"
               required
@@ -73,13 +79,17 @@ export default function SignInComponent() {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <div className="error">{error && error}</div>
+            {error && <div className="error">{error}</div>}
 
             <div className="forgot">
               <Link to="/reset">Forgot password?</Link>
             </div>
 
-            <button type="submit" className="signin-btn">
+            <button
+              type="submit"
+              className="signin-btn"
+              disabled={!email || !password}
+            >
               Login
             </button>
           </form>

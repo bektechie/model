@@ -1,0 +1,86 @@
+/* Main image container */
+.main-image-container {
+  position: relative;
+  width: 100%;
+  margin: 40px 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Main image styling */
+.main-image-container img {
+  width: 100%;
+  height: auto;
+  max-height: 848px;
+  object-fit: cover;
+  display: block;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Overlay text at bottom-left */
+.image-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  text-align: left;
+  color: white;
+}
+
+.image-overlay h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.image-overlay p {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-top: 5px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* Logout button */
+.logout-container {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.logout-btn {
+  padding: 12px 25px;
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #005ccc;
+}
+
+/* Floating Search Icon */
+.main-search-icon {
+  position: fixed;      /* stays top-right on scroll */
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.main-search-icon .MuiIconButton-root {
+  background-color: #0077ff;
+  color: white;
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.main-search-icon .MuiIconButton-root:hover {
+  transform: scale(1.1);
+  background-color: #005ccc;
+}

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "./signUpStyle.css"; // CSS for Sign-Up
+import "./signUpStyle.css";
 
-const STORAGE_KEY = "fake_auth_credents";
+const STORAGE_KEY = "fake_auth_users";
 
-const getStorageCredents = () => {
+// 🔹 Load or initialize users
+const getStorageUsers = () => {
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored) {
     try {
@@ -13,7 +14,9 @@ const getStorageCredents = () => {
       console.error("KEY ERROR");
     }
   }
-  return null;
+  const users = [{ email: "admin@gmail.com", password: "123" }];
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+  return users;
 };
 
 export default function SignUpComponent() {
@@ -34,19 +37,22 @@ export default function SignUpComponent() {
       return;
     }
 
-    const existing = getStorageCredents();
-    if (existing && email === existing.email) {
+    const users = getStorageUsers();
+    if (users.some((u) => u.email.trim() === email.trim())) {
       setError("Email already exists");
       return;
     }
 
-    const newCredents = { email, password };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newCredents));
+    const newUsers = [...users, { email: email.trim(), password: password.trim() }];
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(newUsers));
     setSuccess("Account created successfully!");
+
     setEmail("");
     setPassword("");
     setConfirmPassword("");
-    navigate("/signin"); // redirect to Sign-In after signup
+
+    // Redirect after short delay
+    setTimeout(() => navigate("/signin"), 1000);
   };
 
   return (
@@ -66,8 +72,9 @@ export default function SignUpComponent() {
           </p>
 
           <form onSubmit={handleSubmit}>
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
+              id="email"
               type="email"
               placeholder="Email"
               required
@@ -75,8 +82,9 @@ export default function SignUpComponent() {
               onChange={(e) => setEmail(e.target.value)}
             />
 
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
             <input
+              id="password"
               type="password"
               placeholder="Password"
               required
@@ -84,8 +92,9 @@ export default function SignUpComponent() {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <label>Confirm Password</label>
+            <label htmlFor="confirmPassword">Confirm Password</label>
             <input
+              id="confirmPassword"
               type="password"
               placeholder="Confirm Password"
               required
@@ -93,12 +102,36 @@ export default function SignUpComponent() {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
 
-            <div className="error">{error && error}</div>
-            <div className="success">{success && success}</div>
+            {error && <div className="error">{error}</div>}
+            {success && <div className="success">{success}</div>}
 
             <button type="submit" className="signup-btn">
               Sign Up
             </button>
+
+            <div className="social-login">
+              <p>Or continue with</p>
+              <div className="social-icons">
+                <a href="#" className="social-btn google">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                    alt="Google"
+                  />
+                </a>
+                <a href="#">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+                    alt="Apple"
+                  />
+                </a>
+                <a href="#">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
+                    alt="Facebook"
+                  />
+                </a>
+              </div>
+            </div>
           </form>
         </div>
       </div>

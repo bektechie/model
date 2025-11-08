@@ -1,13 +1,13 @@
+/* Container for left image and right card */
 .signup-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #f1f1f1;
+  width: 100%;
+  min-height: 860px;
+  margin: 20px;
   gap: 40px;
-  padding: 20px;
 }
 
+/* Left side image */
 .signup-left img {
   width: 969px;
   height: 860px;
@@ -15,48 +15,54 @@
   object-fit: cover;
 }
 
+/* Right side card */
 .signup-right {
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  flex: 1;
 }
 
 .signup-card {
-  background: #fff;
+  width: 400px;
   padding: 40px;
   border-radius: 15px;
-  width: 400px;
-  height: 860px; /* same as image */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
 }
 
-.signup-card h1 {
-  margin-bottom: 10px;
-}
-
-.signup-link {
-  margin-bottom: 20px;
-  font-size: 14px;
-}
-
+/* Form labels and inputs */
 .signup-card label {
-  margin-top: 10px;
   display: block;
-  font-weight: bold;
+  margin-bottom: 5px;
+  font-weight: 600;
 }
 
 .signup-card input {
   width: 100%;
   padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border-radius: 5px;
+  margin-bottom: 20px;
+  border-radius: 8px;
   border: 1px solid #ccc;
+  outline: none;
 }
 
+.signup-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #0077ff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.signup-btn:hover {
+  background-color: #005ccc;
+}
+
+/* Messages */
 .error {
   color: red;
   margin-bottom: 10px;
@@ -67,18 +73,48 @@
   margin-bottom: 10px;
 }
 
-.signup-btn {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  background: #007bff;
-  color: #fff;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
+.signup-link {
+  margin-bottom: 20px;
 }
 
-.signup-btn:hover {
-  background: #0056b3;
+/* Social login section */
+.social-login {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.social-login p {
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #555;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.social-icons a img {
+  width: 24px;
+  height: 24px;
+}
+
+.social-icons a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: #888;
 }
