@@ -1,6 +1,7 @@
 .search-page {
   text-align: center;
   padding: 40px;
+  font-family: "Poppins", sans-serif;
 }
 
 .search-bar {
@@ -19,12 +20,34 @@
   font-size: 1rem;
   cursor: pointer;
 }
+.search-box {
+  width: 1420px;          /* specified width */
+  height: 76px;           /* specified height */
+  margin-top: 9px;        /* distance from top */
+  margin-left: 10px;      /* distance from left */
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom: 1px solid #ccc;  /* bottom border only */
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  opacity: 1;
+}
+.featured-heading {
+  margin-top: 30px;
+  margin-left: 10px; /* aligns with search box */
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  left: 0%;
+}
 
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   justify-items: center;
+  margin-top: 30px;
 }
 
 .category-card {
@@ -53,6 +76,7 @@
   font-size: 1.1rem;
 }
 
+/* Modal box for category & search */
 .modal-box {
   background: white;
   border-radius: 12px;
@@ -60,6 +84,7 @@
   max-width: 600px;
   margin: 100px auto;
   text-align: center;
+  position: relative;
 }
 
 .modal-img {

@@ -4,16 +4,9 @@ import "./signUpStyle.css";
 
 const STORAGE_KEY = "fake_auth_users";
 
-// 🔹 Load or initialize users
 const getStorageUsers = () => {
   const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored) {
-    try {
-      return JSON.parse(stored);
-    } catch {
-      console.error("KEY ERROR");
-    }
-  }
+  if (stored) return JSON.parse(stored);
   const users = [{ email: "admin@gmail.com", password: "123" }];
   localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
   return users;
@@ -38,32 +31,29 @@ export default function SignUpComponent() {
     }
 
     const users = getStorageUsers();
-    if (users.some((u) => u.email.trim() === email.trim())) {
+    if (users.some((u) => u.email === email.trim())) {
       setError("Email already exists");
       return;
     }
 
-    const newUsers = [...users, { email: email.trim(), password: password.trim() }];
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newUsers));
+    users.push({ email: email.trim(), password: password.trim() });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+
     setSuccess("Account created successfully!");
-
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
-
-    // Redirect after short delay
     setTimeout(() => navigate("/signin"), 1000);
   };
 
   return (
     <div className="signup-container">
+      {/* Left Image */}
       <div className="signup-left">
         <img
-          src="https://media.istockphoto.com/id/860656468/photo/cute-and-gorgeous-latin-women-in-fashion-dress.jpg?s=612x612&w=0&k=20&c=5MzDtpGCWsdHaxRiSScEAEAimq6PcPnDQ8wicg9Oues="
-          alt="Latina Model"
+          src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=969&q=80"
+          alt="Model"
         />
       </div>
 
+      {/* Right Card */}
       <div className="signup-right">
         <div className="signup-card">
           <h1>Sign Up</h1>
@@ -72,34 +62,31 @@ export default function SignUpComponent() {
           </p>
 
           <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email</label>
+            <label>Email</label>
             <input
-              id="email"
               type="email"
-              placeholder="Email"
-              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
             />
 
-            <label htmlFor="password">Password</label>
+            <label>Password</label>
             <input
-              id="password"
               type="password"
-              placeholder="Password"
-              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              required
             />
 
-            <label htmlFor="confirmPassword">Confirm Password</label>
+            <label>Confirm Password</label>
             <input
-              id="confirmPassword"
               type="password"
-              placeholder="Confirm Password"
-              required
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm Password"
+              required
             />
 
             {error && <div className="error">{error}</div>}
@@ -108,30 +95,6 @@ export default function SignUpComponent() {
             <button type="submit" className="signup-btn">
               Sign Up
             </button>
-
-            <div className="social-login">
-              <p>Or continue with</p>
-              <div className="social-icons">
-                <a href="#" className="social-btn google">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-                    alt="Google"
-                  />
-                </a>
-                <a href="#">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-                    alt="Apple"
-                  />
-                </a>
-                <a href="#">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
-                    alt="Facebook"
-                  />
-                </a>
-              </div>
-            </div>
           </form>
         </div>
       </div>

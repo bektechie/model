@@ -26,12 +26,6 @@ export default function MainPage() {
       <Navbar />
 
       {/* Floating Search Icon */}
-      <div className="main-search-icon">
-        <IconButton onClick={() => navigate("/search")}>
-          <SearchIcon fontSize="large" />
-        </IconButton>
-      </div>
-
       {/* Main Image */}
       <div className="main-image-container">
         <img

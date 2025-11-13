@@ -1,26 +1,44 @@
+/* ===== Navbar Container ===== */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
-  padding: 15px 40px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  background-color: #ffffff;
+  padding: 15px 50px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
   font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+  height: 70px;
 }
 
+/* Add top padding to content so it doesn't hide behind navbar */
+body {
+  padding-top: 70px;
+}
+
+/* ===== Logo ===== */
 .navbar-logo {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 700;
   color: #0077ff;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+.navbar-logo:hover {
+  color: #005ccc;
 }
 
+/* ===== Navbar Links ===== */
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 30px;
+  gap: 25px;
   margin: 0;
   padding: 0;
 }
@@ -30,26 +48,121 @@
   color: #333;
   font-size: 1rem;
   font-weight: 500;
-  transition: color 0.3s ease;
+  padding: 5px 0;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
-.navbar-links li a:hover {
-  color: #0077ff;
+.navbar-links li a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #0077ff;
+  transition: width 0.3s ease;
+}
+
+.navbar-links li a:hover::after {
+  width: 100%;
 }
 
 .sale-link {
-  color: red;
+  color: #e63946;
   font-weight: 600;
 }
 
-/* Language and Currency Selectors */
+/* ===== Right-side Selectors ===== */
 .navbar-selectors {
   display: flex;
   align-items: center;
-  gap: 15px;           /* spacing between language & currency */
-  margin-right: 120px; /* push left to leave room for search icon */
+  gap: 10px;         /* space between items */
+  height: 100%;
+  margin-left: 20px; /* shift left for breathing space */
+}
+
+.selector {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  color: #333;
+  transition: color 0.3s ease;
+  height: 100%;
+}
+
+.selector:hover {
+  color: #0077ff;
 }
 
 .selector span {
-  margin-left: 5px;  /* space between icon and text */
+  margin-left: 5px;
+}
+
+/* ===== Hamburger Menu ===== */
+.menu-container {
+  display: none;
+}
+
+/* ===== Log In Button ===== */
+.login-btn {
+  height: 40px;
+  padding: 0 20px;
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #005ccc;
+  transform: translateY(-1px);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .navbar-links {
+    display: none;
+  }
+
+  .menu-container {
+    display: block;
+  }
+
+  .navbar-selectors {
+    gap: 8px;
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 25px;
+  }
+
+  .navbar-logo {
+    font-size: 1.5rem;
+  }
+
+  .login-btn {
+    height: 35px;
+    font-size: 0.9rem;
+    padding: 0 15px;
+  }
+  .main-search-icon {
+  position: fixed; /* if you want it floating */
+  top: 20px;       /* adjust as needed */
+  left: 30px;      /* this moves it 30px from the left */
+  z-index: 100;
+}
+
 }

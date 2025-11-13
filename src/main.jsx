@@ -1,37 +1,50 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import SignUpComponent from "./pages/signUp/SignUpComponent";
 import SignInComponent from "./pages/signIn/SignInComponent";
 import ResetPasswordComponent from "./pages/ResetPasswordComponent";
 import MainPage from "./pages/MainPage";
 import SearchPage from "./pages/SearchPage";
 
-// ✅ This is the correct React 18+ way to render
+// ✅ Updated import name and path
+import ProtectedRoute from "./pages/Protected"; 
+import Search from "./pages/Search";
+
 const root = createRoot(document.getElementById("root"));
 
 root.render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        {/* Sign Up Page */}
-        <Route path="/" element={<SignUpComponent />} />
+        {/* Landing: redirect to MainPage */}
+        <Route path="/" element={<Navigate to="/main" />} />
 
-        {/* Sign In Page */}
+        {/* Signup */}
+        <Route path="/signup" element={<SignUpComponent />} />
+
+        {/* Signin */}
         <Route path="/signin" element={<SignInComponent />} />
-        <Route path="/reset" element={<ResetPasswordComponent />} />
-        <Route path="/main" element={<MainPage />} />
-        <Route path="/search" element={<SearchPage />} />
 
-        {/* Example: Main page after login */}
+        {/* Reset Password */}
+        <Route path="/reset" element={<ResetPasswordComponent />} />
+
+        {/* Protected Main Page */}
         <Route
           path="/main"
           element={
-            <div style={{ textAlign: "center", marginTop: "2rem" }}>
-              <h1>Welcome to the Main Page!</h1>
-            </div>
+            <ProtectedRoute>
+              <MainPage />
+            </ProtectedRoute>
           }
         />
+
+        {/* Protected Search Page */}
+       <Route path="/search" element={<Search />} />
+
+
+        {/* Catch all unknown routes */}
+        <Route path="*" element={<Navigate to="/signin" />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
