@@ -1,3 +1,4 @@
+// src/Navbar.jsx
 import React, { useState } from "react";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -10,132 +11,89 @@ import "./Navbar.css";
 export default function Navbar() {
   const navigate = useNavigate();
 
-  // Language & Currency
+  // LANGUAGE MENU STATE
   const [langAnchor, setLangAnchor] = useState(null);
-  const [language, setLanguage] = useState("English");
+  const openLang = Boolean(langAnchor);
 
+  // CURRENCY MENU STATE
   const [currAnchor, setCurrAnchor] = useState(null);
-  const [currency, setCurrency] = useState("USD");
-
-  // Mobile Menu
-  const [menuAnchor, setMenuAnchor] = useState(null);
-  const openMenu = Boolean(menuAnchor);
-
-  const menuCategories = {
-    Men: ["Shoes", "Clothes", "Accessories", "Sports"],
-    Women: ["Shoes", "Clothes", "Accessories", "Sports"],
-    Kids: ["Shoes", "Clothes", "Accessories", "Sports"],
-  };
+  const openCurr = Boolean(currAnchor);
 
   return (
-    <nav className="navbar">
-      {/* Logo */}
-      <div className="navbar-logo" onClick={() => navigate("/")}>
-        Blossom
-      </div>
+    <>
+      <nav className="navbar">
+        {/* Logo */}
+        <div className="navbar-logo" onClick={() => navigate("/")}>
+          Blossom
+        </div>
 
-      {/* Navbar Links */}
-      <ul className="navbar-links">
-        {[
-          "Ideas",
-          "News",
-          "Clothing",
-          "Shoes",
-          "Accessories",
-          "Brands",
-          "Sports",
-          "Premium",
-        ].map((link) => (
-          <li key={link}>
-            <a href="#">{link}</a>
+        {/* Center Links */}
+        <ul className="navbar-links">
+          <li><a>Ideas</a></li>
+          <li><a>News</a></li>
+          <li><a>Clothing</a></li>
+          <li><a>Shoes</a></li>
+          <li><a>Accessories</a></li>
+          <li><a>Brands</a></li>
+          <li><a>Sports</a></li>
+          <li><a>Premium</a></li>
+
+          {/* SALE PAGE LINK */}
+          <li>
+            <a className="sale-link" onClick={() => navigate("/sale")}>
+              Sale
+            </a>
           </li>
-        ))}
-        <li>
-          <a href="#" className="sale-link">
-            Sale
-          </a>
-        </li>
-      </ul>
+        </ul>
 
-      {/* Right-side selectors */}
-      <div className="navbar-selectors">
-        {/* Search Icon */}
-        <IconButton
-          onClick={() => navigate("/search")} // Navigate to Search page
-          color="inherit"
-          size="large"
-        >
-          <SearchIcon />
-        </IconButton>
-
-        {/* Language */}
-        <div className="selector">
-          <IconButton
-            onClick={(e) => setLangAnchor(e.currentTarget)}
-            color="inherit"
-            size="small"
-          >
-            <LanguageIcon fontSize="small" />
+        {/* Right section */}
+        <div className="navbar-selectors">
+          {/* Search Button */}
+          <IconButton onClick={() => navigate("/search")}>
+            <SearchIcon />
           </IconButton>
-          <span>{language}</span>
-          <Menu
-            anchorEl={langAnchor}
-            open={Boolean(langAnchor)}
-            onClose={() => setLangAnchor(null)}
-          >
-            <MenuItem onClick={() => setLanguage("English")}>English</MenuItem>
-            <MenuItem onClick={() => setLanguage("Russian")}>Russian</MenuItem>
-            <MenuItem onClick={() => setLanguage("Uzbek")}>Uzbek</MenuItem>
+
+          {/* LANGUAGE DROPDOWN */}
+          <div className="selector">
+            <IconButton size="small" onClick={(e) => setLangAnchor(e.currentTarget)}>
+              <LanguageIcon fontSize="small" />
+            </IconButton>
+            EN
+          </div>
+
+          {/* POPUP MENU FOR LANGUAGE */}
+          <Menu anchorEl={langAnchor} open={openLang} onClose={() => setLangAnchor(null)}>
+            <MenuItem onClick={() => setLangAnchor(null)}>English</MenuItem>
+            <MenuItem onClick={() => setLangAnchor(null)}>Russian</MenuItem>
+            <MenuItem onClick={() => setLangAnchor(null)}>Uzbek</MenuItem>
           </Menu>
-        </div>
 
-        {/* Currency */}
-        <div className="selector">
-          <IconButton
-            onClick={(e) => setCurrAnchor(e.currentTarget)}
-            color="inherit"
-            size="small"
-          >
-            <AttachMoneyIcon fontSize="small" />
-          </IconButton>
-          <span>{currency}</span>
-          <Menu
-            anchorEl={currAnchor}
-            open={Boolean(currAnchor)}
-            onClose={() => setCurrAnchor(null)}
-          >
-            <MenuItem onClick={() => setCurrency("USD")}>USD</MenuItem>
-            <MenuItem onClick={() => setCurrency("EUR")}>EUR</MenuItem>
-            <MenuItem onClick={() => setCurrency("UZS")}>UZS</MenuItem>
+          {/* CURRENCY DROPDOWN */}
+          <div className="selector">
+            <IconButton size="small" onClick={(e) => setCurrAnchor(e.currentTarget)}>
+              <AttachMoneyIcon fontSize="small" />
+            </IconButton>
+            USD
+          </div>
+
+          {/* POPUP MENU FOR CURRENCY */}
+          <Menu anchorEl={currAnchor} open={openCurr} onClose={() => setCurrAnchor(null)}>
+            <MenuItem onClick={() => setCurrAnchor(null)}>USD</MenuItem>
+            <MenuItem onClick={() => setCurrAnchor(null)}>EUR</MenuItem>
+            <MenuItem onClick={() => setCurrAnchor(null)}>UZS</MenuItem>
           </Menu>
-        </div>
 
-        {/* Log In Button */}
-        <button className="login-btn" onClick={() => navigate("/signup")}>
-          Log In
-        </button>
+          {/* LOGIN BUTTON */}
+          <button className="login-btn" onClick={() => navigate("/signup")}>
+            Log In
+          </button>
 
-        {/* Hamburger Menu */}
-        <div className="menu-container">
-          <IconButton
-            onClick={(e) => setMenuAnchor(e.currentTarget)}
-            color="inherit"
-          >
+          {/* Just Icon */}
+          <IconButton>
             <MenuIcon />
           </IconButton>
-          <Menu
-            anchorEl={menuAnchor}
-            open={openMenu}
-            onClose={() => setMenuAnchor(null)}
-          >
-            {Object.keys(menuCategories).map((cat) => (
-              <MenuItem key={cat} onClick={() => setMenuAnchor(null)}>
-                {cat}
-              </MenuItem>
-            ))}
-          </Menu>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }

@@ -44,8 +44,8 @@ export default function SignUpComponent() {
   };
 
   return (
-    <div className="signup-container">
-      {/* Left Image */}
+    <div className="signup-wrapper">
+      {/* LEFT – full height image */}
       <div className="signup-left">
         <img
           src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=969&q=80"
@@ -53,50 +53,60 @@ export default function SignUpComponent() {
         />
       </div>
 
-      {/* Right Card */}
+      {/* RIGHT – clean form */}
       <div className="signup-right">
-        <div className="signup-card">
-          <h1>Sign Up</h1>
-          <p className="signup-link">
-            Already have an account? <Link to="/signin">Sign In</Link>
-          </p>
+        <h1 className="signup-title">Sign Up</h1>
+        <p className="signup-subtitle">
+          Already have an account? <Link to="/signin">Sign In</Link>
+        </p>
 
-          <form onSubmit={handleSubmit}>
-            <label>Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              required
-            />
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <label>First Name</label>
+          <input type="text" placeholder="Marvin" required />
 
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              required
-            />
+          <label>Last Name</label>
+          <input type="text" placeholder=" " />
 
-            <label>Confirm Password</label>
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm Password"
-              required
-            />
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="example@gmail.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-            {error && <div className="error">{error}</div>}
-            {success && <div className="success">{success}</div>}
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-            <button type="submit" className="signup-btn">
-              Sign Up
-            </button>
-          </form>
-        </div>
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            placeholder="••••••••"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+
+          <div className="terms">
+            <input type="checkbox" required />
+            <span>
+              I agree to send an SMS code.{" "}
+              <a href="#">Privacy and Policy</a>
+            </span>
+          </div>
+
+          {error && <div className="error">{error}</div>}
+          {success && <div className="success">{success}</div>}
+
+          <button className="signup-submit">Create account</button>
+        </form>
       </div>
     </div>
   );

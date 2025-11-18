@@ -1,61 +1,112 @@
-.main-search-icon {
-  position: fixed;
-  top: 20px;
-  right: 30px;
-  z-index: 1100;
-  margin-left: 20px;
-}
+/* ========================= */
+/*     MAIN HERO SECTION     */
+/* ========================= */
+
 .main-image-container {
+  width: 1500px;                  /* ⬅ Bigger width */
+  height: 700px;                  /* ⬅ Slightly taller for ratio */
+  margin: 40px auto;
   position: relative;
-  width: 1440px;       /* fixed width */
-  height: 848px;       /* fixed height */
-  opacity: 1;          /* fully visible */
+  border-radius: 36px;
   overflow: hidden;
-  margin-top: 20px;
-  border-radius: 10px;
+  box-shadow: 0px 15px 32px rgba(0, 0, 0, 0.22);
 }
 
 .main-image-container img {
-  width: 100%;          /* fill container width */
-  height: 100%;         /* fill container height */
-  object-fit: cover;    /* cover container without distortion */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
+
+/* ========================= */
+/*      TEXT OVERLAY         */
+/* ========================= */
 
 .image-overlay {
   position: absolute;
-  bottom: 20px;      /* distance from bottom */
-  left: 20px;        /* distance from left */
+  left: 70px;
+  top: 180px;
   color: white;
-  text-align: left;  /* align text to left */
+  text-shadow: 0px 6px 15px rgba(0, 0, 0, 0.45);
 }
 
 .image-overlay h1 {
-  font-size: 2.5rem;
-  margin: 0 0 10px 0;
+  font-size: 70px;                   /* ⬅ Bigger title to match wider image */
+  font-weight: 700;
+  font-family: "Playfair Display", serif;
+  margin-bottom: 10px;
 }
 
 .image-overlay p {
-  font-size: 1.5rem;
-  margin: 0;
+  font-size: 48px;                   /* ⬅ Bigger subtitle */
+  font-family: "Inter", sans-serif;
+  margin-bottom: 30px;
 }
 
+/* Premium Shop Button */
+.premium-btn {
+  background: #ff6a33;
+  color: white;
+  padding: 18px 40px;                /* ⬅ Bigger button */
+  font-size: 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.premium-btn:hover {
+  background: #e65a29;
+}
+
+/* ========================= */
+/*    CAROUSEL INDICATORS    */
+/* ========================= */
+
+.carousel-dots {
+  position: absolute;
+  bottom: 40px;
+  right: 50px;
+  display: flex;
+  gap: 12px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: #ffffff60;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.dot.active {
+  width: 16px;
+  height: 16px;
+  background: white;
+}
+
+/* ========================= */
+/*        LOGOUT BUTTON      */
+/* ========================= */
 
 .logout-container {
-  text-align: center;
-  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 
 .logout-btn {
-  padding: 10px 20px;
-  border-radius: 25px;
-  border: none;
-  background-color: red;
+  padding: 12px 22px;
+  background: #333;
   color: white;
-  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .logout-btn:hover {
-  background-color: darkred;
+  background: #555;
 }
+
